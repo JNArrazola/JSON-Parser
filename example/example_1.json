@@ -1,0 +1,73 @@
+{
+    "empresa": {
+      "nombre": "Tech Solutions",
+      "direccion": {
+        "calle": "Av. Innovación 123",
+        "ciudad": "Ciudad Tech",
+        "pais": "México"
+      },
+      "departamentos": [
+        {
+          "nombre": "Desarrollo",
+          "manager": {
+            "nombre": "Ana López",
+            "edad": 35,
+            "correo": "ana.lopez@techsolutions.com"
+          },
+          "empleados": [
+            {
+              "nombre": "Carlos Gómez",
+              "edad": 28,
+              "rol": "Desarrollador Senior",
+              "proyectos": [
+                {
+                  "nombre": "Proyecto A",
+                  "descripcion": "Desarrollo de una aplicación móvil",
+                  "estado": "En progreso"
+                },
+                {
+                  "nombre": "Proyecto B",
+                  "descripcion": "Implementación de una API REST",
+                  "estado": "Completado"
+                }
+              ]
+            },
+            {
+              "nombre": "María Fernández",
+              "edad": 26,
+              "rol": "Desarrollador Junior",
+              "proyectos": [
+                {
+                  "nombre": "Proyecto C",
+                  "descripcion": "Mantenimiento de la base de datos",
+                  "estado": "En progreso"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nombre": "Recursos Humanos",
+          "manager": {
+            "nombre": "José Martínez",
+            "edad": 42,
+            "correo": "jose.martinez@techsolutions.com"
+          },
+          "empleados": [
+            {
+              "nombre": "Laura González",
+              "edad": 30,
+              "rol": "Especialista en Reclutamiento",
+              "proyectos": [
+                {
+                  "nombre": "Proyecto D",
+                  "descripcion": "Campaña de reclutamiento 2024",
+                  "estado": "Planificado"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
