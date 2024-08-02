@@ -9,7 +9,7 @@ public class ErrorHandler {
      * @param message error message
      * @param line line number where the error occurred
       */
-    public void throwError(String message, int line) {
+    public static void throwError(String message, int line) {
         throw new RuntimeException("[Error at line " + line + "] " + message);
     }
 
@@ -17,7 +17,7 @@ public class ErrorHandler {
      * Throws an error with the given message
      * @param message error message
       */
-    public void throwError(String message) {
+    public static void throwError(String message) {
         throw new RuntimeException("[Error] " + message);
     }
 }

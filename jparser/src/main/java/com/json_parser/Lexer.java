@@ -29,27 +29,31 @@ public class Lexer {
         init();
 
         content = FileManagement.read(path);
-        System.out.println(content);
 
         while(!isAtEnd()){
-            switch (getActualChar()) {
-                case '1':
-                    
+            switch (content.charAt(position)) {
+                case '\n':
+                    line++;
                     break;
-            
+                case ' ':
+                case '\t':
+                    break;
+                case '"':
+                    handleString();
+                    break;
                 default:
                     break;
             }
+            advance();
         }
-
         tokens.add(new Token(TokenType.EOF, position));
         return tokens;
     }
 
     private boolean isAtEnd(){
-        return position >= tokens.size();
+        return position >= content.length();
     }
-
+            
     private void advance(){
         position++;
     }
@@ -70,7 +74,21 @@ public class Lexer {
         return content.charAt(position + n);
     }
 
-    private char getActualChar(){
-        return content.charAt(position);
+    // ********* Handlers *********
+    private void handleString() throws Exception{
+        advance();
+        int start = position;
+
+        while (!isAtEnd() && content.charAt(position) != '"'){
+            if(content.charAt(position) == '\n')
+                ErrorHandler.throwError("Unterminated string: " + content.substring(start, position), line);
+            
+            advance();
+        }
+        
+        if(isAtEnd())
+            ErrorHandler.throwError("Unterminated string: " + content.substring(start, position), line);
+        
+        tokens.add(new Token(content.substring(start, position), TokenType.STRING, line));
     }
 }

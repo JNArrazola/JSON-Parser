@@ -10,7 +10,7 @@ public class Main {
             Lexer lexer = new Lexer();
             tokens = lexer.process(JSON_File);
             for(Token token : tokens)
-                System.out.println(token.getType());
+                System.out.println(token.getValue());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
