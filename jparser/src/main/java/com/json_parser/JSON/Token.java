@@ -1,4 +1,4 @@
-package com.json_parser;
+package com.json_parser.JSON;
 
 /**
  * Token class represents a token in the JSON string

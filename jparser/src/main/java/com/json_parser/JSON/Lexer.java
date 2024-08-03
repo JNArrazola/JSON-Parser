@@ -1,4 +1,4 @@
-package com.json_parser;
+package com.json_parser.JSON;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,18 +90,6 @@ public class Lexer {
         return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c >= '0' && c <= '9';
     }
 
-    private char peek(){
-        if(position + 1 >= content.length())
-            return '\0';
-        return content.charAt(position + 1);
-    }
-
-    private char peek(int n){
-        if(position + n >= content.length())
-            return '\0';
-        return content.charAt(position + n);
-    }
-
     // ********* Handlers *********
     private void handleString() throws Exception{
         advance();
@@ -133,8 +121,8 @@ public class Lexer {
 
         String lexeme = content.substring(start, position + 1);
 
-        if(keywords.containsKey(lexeme.toUpperCase()))
-            tokens.add(new Token(lexeme.toUpperCase(), keywords.get(lexeme), line));
+        if(keywords.containsKey(lexeme))
+            tokens.add(new Token(lexeme, keywords.get(lexeme), line));
         else
             try {
                 Double.parseDouble(lexeme);

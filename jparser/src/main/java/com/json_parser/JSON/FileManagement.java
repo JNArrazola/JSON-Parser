@@ -1,4 +1,4 @@
-package com.json_parser;
+package com.json_parser.JSON;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

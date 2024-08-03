@@ -1,4 +1,4 @@
-package com.json_parser;
+package com.json_parser.JSON;
 
 public class Parser {
     

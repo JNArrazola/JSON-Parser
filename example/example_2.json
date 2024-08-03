@@ -1,6 +1,6 @@
 {
     "nombre": "Juan",
-    "edad": 30,
+    "edad": null,
     "ciudad": "Ciudad de México",
     "habilidades": ["Java", "Python", "SQL"],
     "experiencia": {

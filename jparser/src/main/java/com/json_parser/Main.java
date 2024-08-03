@@ -2,6 +2,9 @@ package com.json_parser;
 
 import java.util.ArrayList;
 
+import com.json_parser.JSON.Lexer;
+import com.json_parser.JSON.Token;
+
 public class Main {
     // private static final String JSON_File = "/home/jarrazola/Documents/JSON_Parser/example/example_1.json";
     private static final String JSON_File = "/home/jarrazola/Documents/JSON_Parser/example/example_2.json";

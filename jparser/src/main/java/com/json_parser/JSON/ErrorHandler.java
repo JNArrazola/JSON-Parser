@@ -1,4 +1,4 @@
-package com.json_parser;
+package com.json_parser.JSON;
 
 /**
  * ErrorHandler class handles errors that occur during parsing
