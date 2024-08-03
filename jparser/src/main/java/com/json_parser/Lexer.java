@@ -20,9 +20,9 @@ public class Lexer {
         this.keywords = new HashMap<>();
 
         // Keywords
-        this.keywords.put("TRUE", TokenType.TRUE);
-        this.keywords.put("FALSE", TokenType.FALSE);
-        this.keywords.put("NULL", TokenType.NULL);
+        this.keywords.put("true", TokenType.TRUE);
+        this.keywords.put("false", TokenType.FALSE);
+        this.keywords.put("null", TokenType.NULL);
     }
 
     public ArrayList<Token> process(String path) throws Exception {
@@ -41,7 +41,35 @@ public class Lexer {
                 case '"':
                     handleString();
                     break;
+                case ',':
+                    tokens.add(new Token(TokenType.COMMA, line));
+                    break;
+                case ':':
+                    tokens.add(new Token(TokenType.COLON, line));
+                    break;
+                case '[':
+                    tokens.add(new Token(TokenType.LBRACKET, line));
+                    break;
+                case ']':
+                    tokens.add(new Token(TokenType.RBRACKET, line));
+                    break;
+                case '{':
+                    tokens.add(new Token(TokenType.LBRACE, line));
+                    break;
+                case '}':
+                    tokens.add(new Token(TokenType.RBRACE, line));
+                    break;
+                case '(':
+                    tokens.add(new Token(TokenType.LPARENTHESIS, line));
+                    break;
+                case ')':  
+                    tokens.add(new Token(TokenType.RPARENTHESIS, line));
+                    break;
                 default:
+                    if(isAlphaNumeric(content.charAt(position)))
+                        handleDefault();
+                    else
+                        ErrorHandler.throwError("Invalid token: " + content.charAt(position), line);
                     break;
             }
             advance();
@@ -58,8 +86,8 @@ public class Lexer {
         position++;
     }
 
-    private boolean isAlphanumerical(char c){
-        return c >= '0' && c <= '9' || c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c == '_' || c == '-' || c == '.';
+    private boolean isAlphaNumeric(char c){
+        return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c >= '0' && c <= '9';
     }
 
     private char peek(){
@@ -90,5 +118,30 @@ public class Lexer {
             ErrorHandler.throwError("Unterminated string: " + content.substring(start, position), line);
         
         tokens.add(new Token(content.substring(start, position), TokenType.STRING, line));
+    }
+
+    private void handleDefault(){
+        int start = position;
+
+        while(!isAtEnd() && isAlphaNumeric(content.charAt(position))){
+            if(content.charAt(position) == '\n')
+                ErrorHandler.throwError("Invalid token: " + content.substring(start, position), line);
+            
+            advance();
+        }
+        position--;
+
+        String lexeme = content.substring(start, position + 1);
+
+        if(keywords.containsKey(lexeme.toUpperCase()))
+            tokens.add(new Token(lexeme.toUpperCase(), keywords.get(lexeme), line));
+        else
+            try {
+                Double.parseDouble(lexeme);
+                tokens.add(new Token(lexeme, TokenType.NUMBER, line));
+            } catch (NumberFormatException e) {
+                ErrorHandler.throwError("Invalid token: " + lexeme, line);
+            }
+        
     }
 }

@@ -1,0 +1,11 @@
+{
+    "nombre": "Juan",
+    "edad": 30,
+    "ciudad": "Ciudad de México",
+    "habilidades": ["Java", "Python", "SQL"],
+    "experiencia": {
+      "trabajoActual": "Desarrollador Backend",
+      "años": 5
+    }
+  }
+  
